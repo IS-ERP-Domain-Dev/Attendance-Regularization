@@ -1,0 +1,63 @@
+{
+	"ReportsData": [
+		{
+			"StartDate": "01.10.2022",
+			"EndDate": "01.10.2022",
+			"LossOfPay": "1",
+			"AttendanceType":[{
+				"PresentAtWork": "X",
+				"INABBTraining": "",
+				"INABBOnDuty":""
+			}]
+		
+		},
+		{
+			"StartDate": "02.10.2022",
+			"EndDate": "02.10.2022",
+			"LossOfPay": "1",
+			"AttendanceType":[{
+				"PresentAtWork": "",
+				"INABBTraining": "X",
+				"INABBOnDuty":""
+			}]
+		
+		},
+		{
+			"StartDate": "03.10.2022",
+			"EndDate": "03.10.2022",
+			"LossOfPay": "2",
+				"AttendanceType":[{
+				"PresentAtWork": "",
+				"INABBTraining": "",
+				"INABBOnDuty":"X"
+			}]
+		},
+		{
+			"StartDate": "04.10.2022",
+			"EndDate": "04.10.2022",
+			"LossOfPay": "1",
+			"AttendanceType":[{
+				"PresentAtWork": "X",
+				"INABBTraining": "",
+				"INABBOnDuty":""
+			}]
+		}
+	],
+	"AttendanceType":[
+		{
+			"radioBtnText": "Present At Work"
+		},
+		{
+			"radioBtnText": "INABB - Training"
+		},
+		{
+			"radioBtnText": "INABB - On Duty"
+		},
+		{
+			"radioBtnText": "INABB - Telecommute"
+		},
+		{
+			"radioBtnText": "INABB - Business Trip"
+		}
+	]
+}

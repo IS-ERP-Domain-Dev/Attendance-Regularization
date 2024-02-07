@@ -1,0 +1,19 @@
+/* Enter your custom styles here */
+.fcard-css-style>div{
+	padding: 0 0 !important;
+}
+
+.header-text-css{
+	font-weight: 600 !important;	
+}
+.object-header-text{
+	color: #0a6ed1 !important;
+	font-weight: 600 !important;
+}
+.mark-as-present-btn-style>span>span{
+    padding-left: 10px;
+    padding-right: 10px;
+    color: #0a6ed1 !important;
+	border: 1.5px solid #0a6ed1 !important;
+    border-radius: 5px !important;
+}

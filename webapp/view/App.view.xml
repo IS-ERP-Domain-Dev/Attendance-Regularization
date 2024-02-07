@@ -1,0 +1,250 @@
+<mvc:View
+	controllerName="com.abb.attendance_self_reg.Attendance_Self_Reg.controller.App" 
+	xmlns:mvc="sap.ui.core.mvc"
+	displayBlock="true"
+	xmlns="sap.uxap"
+	xmlns:f="sap.f"
+	xmlns:card="sap.f.cards"
+	xmlns:layout="sap.ui.layout"
+	xmlns:form="sap.ui.layout.form"
+	xmlns:fb="sap.ui.comp.filterbar"
+	xmlns:m="sap.m"
+	xmlns:core="sap.ui.core">
+	<m:Shell id="shell">
+		<m:App id="app">
+			<ObjectPageLayout 
+				id="ObjectPageLayout"
+				subSectionLayout="TitleOnLeft"
+				showTitleInHeaderContent="true" 
+				upperCaseAnchorBar="false"
+				showFooter="true">
+				<headerTitle>
+					<ObjectPageDynamicHeaderTitle>
+						<expandedHeading>
+							<m:Title 
+								text="{payrollDateModel>/EmpName} - {payrollDateModel>/Persno}"
+								wrapping="true"/>
+						</expandedHeading>
+						<snappedHeading>
+							<m:FlexBox
+								fitContainer="true"
+								alignItems="Center">
+								<m:Title
+									text="{payrollDateModel>/EmpName} - {payrollDateModel>/Persno}" 
+									wrapping="true"/>
+							</m:FlexBox>
+						</snappedHeading>
+					</ObjectPageDynamicHeaderTitle>
+				</headerTitle>
+				<headerContent>
+					<fb:FilterBar
+						header="Employees" 
+						showFilterConfiguration="false"
+						useToolbar="false"
+						search="onFilterBarSearch">
+						<fb:filterGroupItems >
+							<fb:FilterGroupItem
+								groupName="__$INTERNAL$" 
+								name="A"
+								label="Start Date"
+								partOfCurrentVariant="true" 
+								visibleInFilterBar="true">
+								<fb:control>
+									<m:DatePicker 
+										id="periodFromDate" 
+										displayFormat="yyyy/MM/dd"
+										valueFormat="yyyy/MM/dd" 
+										value="{path:'payrollDateModel>/PeriodFrom', formatter:'.formatter.convertDateFormatForFilter'}"
+										width="50%"/>
+								</fb:control>
+							</fb:FilterGroupItem>
+							<fb:FilterGroupItem 
+								groupName="__$INTERNAL$"
+								name="B"
+								label="End Date"
+								labelTooltip="End Date"
+								partOfCurrentVariant="true"
+								visibleInFilterBar="true">
+								<fb:control>
+									<m:DatePicker 
+										id="periodToDate" 
+										displayFormat="yyyy/MM/dd" 
+										valueFormat="yyyy/MM/dd"
+										value="{path:'payrollDateModel>/PeriodTo', formatter:'.formatter.convertDateFormatForFilter'}"
+										width="50%"/>
+								</fb:control>
+							</fb:FilterGroupItem>
+						</fb:filterGroupItems>
+					</fb:FilterBar>
+				</headerContent>
+				<sections>
+					<ObjectPageSection 
+						titleUppercase="false" 
+						id="goals" 
+						title="Report List ({payrollData>/Count})" 
+						showTitle="false">
+						<subSections>
+							<ObjectPageSubSection 
+								id="goalsSS1" 
+								titleUppercase="false" 
+								class="fcard-css-style">
+								<f:Card >
+									<f:content>
+										<m:Table 
+											id="workingDaysTableId"
+											growing="true"
+											growingThreshold="50"
+											items="{payrollData>/PayrollItems}" 
+											ariaLabelledBy="title">
+											<m:headerToolbar>
+												<m:OverflowToolbar>
+													<m:content>
+														<!--<m:Title -->
+														<!--	text="Report List" -->
+														<!--	level="H1"/>-->
+														<m:ToolbarSpacer />
+														<m:Button 
+															type="Default" 
+															text="Mark All Present" 
+															press="onMarkAsPresentPressed"
+															enabled="{payrollData>/EnableButtons}"
+															class="mark-as-present-btn-style"/>
+													</m:content>
+												</m:OverflowToolbar>
+											</m:headerToolbar>
+											<m:columns>
+												<m:Column
+													width="1.5rem">
+													<m:Label 
+														text="Start Date" 
+														class="header-text-css"/>
+												</m:Column>
+											</m:columns>
+											<m:columns>
+												<m:Column
+													width="1.5rem">
+													<m:Label text="End Date" class="header-text-css"/>
+												</m:Column>
+											</m:columns>
+											<m:columns>
+												<m:Column 
+													hAlign="Center" 
+													width="2rem"
+													minScreenWidth="Medium" 
+													demandPopin="true">
+													<m:Label 
+														text="Loss of Pay" 
+														class="header-text-css"/>
+												</m:Column>
+											</m:columns>
+											<m:columns>
+												<m:Column
+													width="1.5rem"
+													hAlign="Center"
+													minScreenWidth="Medium" 
+													demandPopin="true">
+													<m:Label text="Wage Type" class="header-text-css"/>
+												</m:Column>
+											</m:columns>
+												<m:columns>
+												<m:Column
+													width="2.5rem"
+													hAlign="Center"
+													minScreenWidth="Medium" 
+													demandPopin="true">
+													<m:Label text="Wage Text" class="header-text-css"/>
+												</m:Column>
+											</m:columns>
+											<m:columns>
+												<m:Column 
+													width="11.5rem"
+													minScreenWidth="Medium" 
+													demandPopin="true">
+													<m:Label 
+														text="Attendance Type" 
+														class="header-text-css"/>
+												</m:Column>
+											</m:columns>
+											<m:items>
+												<m:ColumnListItem>
+													<m:cells >
+														<m:ObjectIdentifier 
+															text="{path:'payrollData>StartDate', formatter:'.formatter.convertDateFormat'}"/>
+													</m:cells>
+													<m:cells>
+														<m:ObjectIdentifier 
+															text="{path:'payrollData>EndDate', formatter:'.formatter.convertDateFormat'}"/>
+													</m:cells>
+													<m:cells>
+														<m:ObjectIdentifier 
+															text="{payrollData>LossOfPay}"/>
+													</m:cells>
+													<m:cells>
+														<m:ObjectIdentifier 
+															text="{payrollData>WageType}"/>
+													</m:cells>
+														<m:cells>
+														<m:ObjectIdentifier 
+															text="{payrollData>WageTypeText}"/>
+													</m:cells>
+													<m:cells>
+														<m:RadioButtonGroup 
+															buttons="{path:'payrollData>AttendType', templateShareable:false}" 
+															valueState="Information"
+															selectedIndex="{payrollData>selectedIndex}"
+															columns="3" 
+															select="onChangeOfAttendanceType">
+															<m:RadioButton
+																text="{payrollData>Desc}" 
+																selected = "false" />
+														</m:RadioButtonGroup>
+														<!--<m:RadioButtonGroup -->
+														<!--	id="attendance-type-rb" -->
+														<!--	columns="3" -->
+														<!--	select="onChangeOfAttendanceType">-->
+															
+														<!--	<m:RadioButton -->
+														<!--		id="RB1-1"-->
+														<!--		text="{i18n>RadioBtnText1}" -->
+														<!--		selected="{= ${payrollData>AttendanceType} === '01'? true:false}"/>-->
+														<!--	<m:RadioButton -->
+														<!--		id="RB2-2" -->
+														<!--		text="{i18n>RadioBtnText2}" -->
+														<!--		selected="{= ${payrollData>AttendanceType} === '02'? true:false}"/>-->
+														<!--	<m:RadioButton -->
+														<!--		id="RB3-3" -->
+														<!--		text="{i18n>RadioBtnText3}" -->
+														<!--		selected="{= ${payrollData>AttendanceType} === '03'? true:false}"/>-->
+														<!--</m:RadioButtonGroup>-->
+													</m:cells>
+												</m:ColumnListItem>
+											</m:items>
+										</m:Table>
+									</f:content>
+								</f:Card>
+							</ObjectPageSubSection>
+						</subSections>
+					</ObjectPageSection>
+				</sections>
+				<footer>
+					<m:OverflowToolbar>
+						<m:ToolbarSpacer/>
+						<m:Button 
+							id="submitId" 
+							type="Accept" 
+							icon="sap-icon://save"
+							enabled="{payrollData>/EnableButtons}"
+							press="onUpdatePayrollPressed" 
+							text="{i18n>submit}"/>
+						<m:Button 
+							type="Reject" 
+							icon="sap-icon://reset"
+							press="onResetPressed" 
+							enabled="{payrollData>/EnableButtons}"
+							text="{i18n>reset}"/>
+					</m:OverflowToolbar>
+				</footer>
+			</ObjectPageLayout>
+		</m:App>
+	</m:Shell>
+</mvc:View>
