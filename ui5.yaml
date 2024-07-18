@@ -10,9 +10,7 @@ server:
         ignoreCertError: false
         backend:
           - path: /sap
-            url: http://zip-rd4-520.p1.abb.com:443
-            client: "520"
-            destination: ameard4520rt
+            destination: ameafiori
         ui5:
           path:
             - /resources
