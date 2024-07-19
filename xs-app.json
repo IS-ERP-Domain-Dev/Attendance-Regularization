@@ -5,7 +5,7 @@
     {
       "source": "^/sap/(.*)$",
       "target": "/sap/$1",
-      "destination": "AMEA_RD4_520",
+      "destination": "ameafiori",
       "authenticationType": "xsuaa",
       "csrfProtection": false
     },
